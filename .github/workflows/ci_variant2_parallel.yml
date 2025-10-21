@@ -1,4 +1,4 @@
-name: CI №2 — Parallel (tests & lint)
+name: CI n2 — Parallel (tests & lint)
 
 on:
   push:
@@ -21,18 +21,20 @@ jobs:
       - name: Run tests
         run: pytest -q
 
-  lint:
-    runs-on: ubuntu-latest
-    env:
-      PYTHONPATH: ${{ github.workspace }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Install black
-        run: |
-          python -m pip install --upgrade pip
-          pip install black
-      - name: Lint with Black (fail on diff)
-        run: black --check .
+lint:
+  runs-on: ubuntu-latest
+  env:
+    PYTHONPATH: ${{ github.workspace }}
+  steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - name: Install black
+      run: |
+        python -m pip install --upgrade pip
+        pip install black
+    - name: Format with Black
+      run: black .
+    - name: Lint with Black (fail on diff)
+      run: black --check .
