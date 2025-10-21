@@ -1,0 +1,11 @@
+[project]
+name = "ci-cd-lab"
+version = "0.1.0"
+description = "Практична робота 3 — CI/CD (Варіант №2: паралельні jobs)"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.black]
+line-length = 88
